@@ -3,7 +3,7 @@
     <br>
     <img height="auto" width="500px" src="/images/icon/skill_pc.svg" alt="SVG Image">
   </div>
-  <div class="more-content">本站建于2024/6/1哦~</div>
+  <div class="more-content">本站建于2024-06-01哦~</div>
 </template>
 
 <style lang="scss" scoped>
