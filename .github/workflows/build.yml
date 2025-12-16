@@ -1,4 +1,4 @@
-name: Build Dev (Pages)
+name: Build & Deploy (Pages + Zip)
 
 on:
   push:
@@ -42,11 +42,23 @@ jobs:
       - name: Build
         run: npm run build
 
-      # ⬇️ 把 dist 作为 Pages 构建产物
+      # ① 上传给 GitHub Pages
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+      # ② 同时打包 dist.zip
+      - name: Zip dist folder
+        run: |
+          Compress-Archive -Path dist\* -DestinationPath dist.zip
+
+      # ③ 提供 dist.zip 下载
+      - name: Upload dist.zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist.zip
 
   deploy:
     needs: build
