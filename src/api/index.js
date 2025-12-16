@@ -14,8 +14,3 @@ export const getWeather = async (key, city) => {
   );
   return await res.json();
 };
-
-export const getOtherWeather = async () => {
-  const res = await fetch("https://api.oioweb.cn/api/weather/GetWeather");
-  return await res.json();
-};

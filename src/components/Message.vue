@@ -25,7 +25,7 @@
       </div>
     </div>
     <div id="svgContainer">
-      <img class="snake-light" src="https://cdn.ozo.ooo/static/svg/snake_light.svg" alt="SVG Image">
+      <img class="snake-light" src="/images/icon/snake_light.svg" alt="SVG Image">
     </div>
   </div>
 </template>

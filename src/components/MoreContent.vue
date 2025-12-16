@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <img height="auto" width="500px" src="https://cdn.ozo.ooo/static/svg/skill_pc.svg" alt="SVG Image">
+    <img height="auto" width="500px" src="/images/icon/skill_pc.svg" alt="SVG Image">
   </div>
   <div class="more-content">本站建于2024/6/1哦~</div>
 </template>
