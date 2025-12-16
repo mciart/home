@@ -5,6 +5,7 @@ name: Build Dev
 on:
   push:
     branches:
+      - main
       - dev
       - master
 
