@@ -29,7 +29,6 @@
 - [x] 日期及时间
 - [x] 实时天气
 - [x] 时光进度条
-- [x] 音乐播放器
 - [x] 移动端适配
 
 ### ⚙️ 自动部署
@@ -144,23 +143,6 @@ const siteIcon = {
 
 也可自行更换其他方式
 
-### 音乐
-
-> 本项目采用了基于 `MetingJS` 的 `Aplayer` 音乐播放器，可实现快速自定义歌单  
-> \*仅支持 **中国大陆地区**
-
-请在 `.env` 文件中更改歌曲相关参数即可实现自定义歌单列表
-
-```bash
-# 歌曲 API 地址
-VITE_SONG_API = "https://api-meting.imsyy.top"
-# 歌曲服务器 ( netease-网易云, tencent-qq音乐 )
-VITE_SONG_SERVER = "netease"
-# 播放类型 ( song-歌曲, playlist-播放列表, album-专辑, search-搜索, artist-艺术家 )
-VITE_SONG_TYPE = "playlist"
-# 播放 ID
-VITE_SONG_ID = "7452421335"
-```
 
 ### 字体
 
@@ -231,7 +213,6 @@ if (type == 0) {
 - [Pinia](https://pinia.vuejs.org/zh/)
 - [IconPark](https://iconpark.oceanengine.com/official)
 - [xicons](https://xicons.org/)
-- [Aplayer](https://aplayer.js.org/)
 
 ### API
 

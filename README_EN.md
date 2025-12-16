@@ -29,10 +29,7 @@ Simple little homepage, had enough of the original one and made a new one
 - [x] Date and time
 - [x] Live weather
 - [x] Time progress bar
-- [x] Music player
 - [x] Mobile adaptation
-
-* [ ] Player cancels using Aplayer
 
 ### Deployment
 
@@ -68,23 +65,6 @@ Weather and area access requires `高德开放平台` related API
 
 It can also be replaced by other methods
 
-### Music
-
->This project uses the `Aplayer` music player based on `MetingJS` for quick song list customization  
->*Only supported in **Mainland China**
-
-Please change the song related parameters in the `.env` file to customize the song list
-
-```bash
-# Songs API address
-VITE_SONG_API = "https://api-meting.imsyy.top"
-# Song server ( netease-netease, tencent-qq music )
-VITE_SONG_SERVER = "netease"
-# Playback type ( song-song, playlist-playlist, album-album, search-search, artist-artist )
-VITE_SONG_TYPE = "playlist"
-# Playback ID
-VITE_SONG_ID = "7452421335"
-```
 
 ### Fonts
 
@@ -136,7 +116,6 @@ make clean all
 * [Pinia](https://pinia.vuejs.org/zh/)
 * [IconPark](https://iconpark.oceanengine.com/official)
 * [xicons](https://xicons.org/)
-* [Aplayer](https://aplayer.js.org/)
 
 ### API
 
