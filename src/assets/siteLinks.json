@@ -21,13 +21,13 @@
   },
   {
     "icon": "Compass",
-    "name": "起始导航",
-    "link": "https://nav.ozo.ooo/"
+    "name": "站点监控",
+    "link": "https://status.mchzb.eu.org/"
   },
   {
     "icon": "Cubes",
     "name": "Minecraft",
-    "link": "https://mc.ozo.ooo/"
+    "link": "https://ozo.ooo/minecraft"
   },
   {
     "icon": "LaptopCode",
