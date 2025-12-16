@@ -66,10 +66,10 @@ class Cursor {
 
   init() {
     document.onmousemove = (e) => {
-      this.pos.curr == null && this.move(e.clientX - 8, e.clientY - 8);
+      this.pos.curr == null && this.move(e.clientX - 9, e.clientY - 9);
       this.pos.curr = {
-        x: e.clientX - 8,
-        y: e.clientY - 8,
+        x: e.clientX - 9,
+        y: e.clientY - 9,
       };
       this.cursor.classList.remove("hidden");
     };
