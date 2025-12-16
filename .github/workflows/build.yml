@@ -1,6 +1,4 @@
-# Dev 分支推送部署预览
-## 仅部署 Win 端
-name: Build Dev
+name: Build Dev (Pages)
 
 on:
   push:
@@ -8,40 +6,56 @@ on:
       - main
       - dev
       - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  release:
-    name: Build Website
+  build:
     runs-on: windows-latest
 
     steps:
-      # 检出 Git 仓库
-      - name: Check out git repository
-        uses: actions/checkout@v4.1.1
-      # 安装 Node.js
-      - name: Install Node.js
-        uses: actions/setup-node@v4.0.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-      # 复制环境变量文件
+
       - name: Copy .env.example
         run: |
           if (-not (Test-Path .env)) {
             Copy-Item .env.example .env
-          } else {
-            Write-Host ".env file already exists. Skipping the copy step."
           }
-      # 安装项目依赖
-      - name: Install Dependencies
+
+      - name: Install dependencies
         run: npm install
-      # 构建程序
-      - name: Build Website
+
+      - name: Build
         run: npm run build
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      # 上传构建产物
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+
+      # ⬇️ 把 dist 作为 Pages 构建产物
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: Home
           path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
