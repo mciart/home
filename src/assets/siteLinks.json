@@ -1,37 +1,37 @@
 [
   {
     "icon": "Blog",
-    "name": "博客",
-    "link": "https://blog.imsyy.top/"
+    "name": "博客记录",
+    "link": "https://log.ozo.ooo/"
   },
   {
-    "icon": "Cloud",
-    "name": "网盘",
-    "link": "https://pan.imsyy.top/"
+    "icon": "FileDownload",
+    "name": "文件分享",
+    "link": "https://ozo.ooo/shared"
   },
   {
-    "icon": "CompactDisc",
-    "name": "音乐",
-    "link": "https://music.imsyy.top/"
+    "icon": "GTranslateFilled",
+    "name": "模型翻译",
+    "link": "https://trn.ozo.ooo/"
+  },
+  {
+    "icon": "Link",
+    "name": "短链生成",
+    "link": "https://url.ozo.ooo/"
   },
   {
     "icon": "Compass",
-    "name": "起始页",
-    "link": "https://nav.imsyy.top/"
+    "name": "起始导航",
+    "link": "https://nav.ozo.ooo/"
   },
   {
-    "icon": "Book",
-    "name": "网址集",
-    "link": "https://web.imsyy.top/"
-  },
-  {
-    "icon": "Fire",
-    "name": "今日热榜",
-    "link": "https://hot.imsyy.top/"
+    "icon": "Cubes",
+    "name": "Minecraft",
+    "link": "https://mc.ozo.ooo/"
   },
   {
     "icon": "LaptopCode",
-    "name": "站点监测",
-    "link": "https://status.imsyy.top/"
+    "name": "还没想好做啥",
+    "link": "https://other.ozo.ooo/"
   }
 ]

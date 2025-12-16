@@ -63,7 +63,7 @@ const closeShow = ref(false);
 // 站点链接
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
-  if (!url) return "imsyy.top".split(".");
+  if (!url) return "ooo.ozo.ooo".split(".");
   // 判断协议前缀
   if (url.startsWith("http://") || url.startsWith("https://")) {
     const urlFormat = url.replace(/^(https?:\/\/)/, "");
@@ -144,23 +144,6 @@ const jumpTo = (url) => {
         .sm {
           margin-left: 6px;
           font-size: 2rem;
-        }
-
-        @media (max-width: 990px) {
-          .bg {
-            font-size: 4.5rem;
-          }
-          .sm {
-            font-size: 1.7rem;
-          }
-        }
-        @media (max-width: 825px) {
-          .bg {
-            font-size: 3.8rem;
-          }
-          .sm {
-            font-size: 1.3rem;
-          }
         }
       }
 

@@ -15,16 +15,17 @@
         <Icon size="16">
           <QuoteLeft />
         </Icon>
-        <Transition name="fade" mode="out-in">
-          <div :key="descriptionText.hello + descriptionText.text" class="text">
-            <p>{{ descriptionText.hello }}</p>
-            <p>{{ descriptionText.text }}</p>
-          </div>
-        </Transition>
+        <div class="text">
+          <p>{{ descriptionText.hello }}</p>
+          <p>{{ descriptionText.text }}</p>
+        </div>
         <Icon size="16">
           <QuoteRight />
         </Icon>
       </div>
+    </div>
+    <div id="svgContainer">
+      <img class="snake-light" src="https://cdn.ozo.ooo/static/svg/snake_light.svg" alt="SVG Image">
     </div>
   </div>
 </template>
@@ -40,8 +41,8 @@ const store = mainStore();
 const siteLogo = import.meta.env.VITE_SITE_MAIN_LOGO;
 // 站点链接
 const siteUrl = computed(() => {
-  const url = import.meta.env.VITE_SITE_URL;
-  if (!url) return "imsyy.top".split(".");
+  const url = import.meta.env.VITE_SITE_ANTHOR;
+  if (!url) return "ooo.ozo.ooo".split(".");
   // 判断协议前缀
   if (url.startsWith("http://") || url.startsWith("https://")) {
     const urlFormat = url.replace(/^(https?:\/\/)/, "");
@@ -58,7 +59,7 @@ const descriptionText = reactive({
 
 // 切换右侧功能区
 const changeBox = () => {
-  if (store.getInnerWidth >= 721) {
+  if (store.getInnerWidth >= 990) {
     store.boxOpenState = !store.boxOpenState;
   } else {
     ElMessage({
@@ -112,7 +113,7 @@ watch(
       .sm {
         margin-left: 6px;
         font-size: 2rem;
-        @media (min-width: 721px) and (max-width: 789px) {
+        @media (min-width: 720px) and (max-width: 789px) {
           display: none;
         }
       }
@@ -148,7 +149,6 @@ watch(
         margin: 0.75rem 1rem;
         line-height: 2rem;
         margin-right: auto;
-        transition: opacity 0.2s;
 
         p {
           &:nth-of-type(1) {
@@ -166,28 +166,44 @@ watch(
       pointer-events: none;
     }
   }
-  // @media (max-width: 390px) {
-  //   .logo {
-  //     flex-direction: column;
-  //     .logo-img {
-  //       display: none;
-  //     }
-  //     .name {
-  //       margin-left: 0;
-  //       height: auto;
-  //       transform: none;
-  //       text-align: center;
-  //       .bg {
-  //         font-size: 3.5rem;
-  //       }
-  //       .sm {
-  //         font-size: 1.4rem;
-  //       }
-  //     }
-  //   }
-  //   .description {
-  //     margin-top: 2.5rem;
-  //   }
-  // }
+  @media (max-width: 390px) {
+    .logo {
+      flex-direction: column;
+      .logo-img {
+        display: none;
+      }
+      .name {
+        margin-left: 0;
+        height: auto;
+        transform: none;
+        text-align: center;
+        .bg {
+          font-size: 3.5rem;
+        }
+        .sm {
+          font-size: 1.4rem;
+        }
+      }
+    }
+    .description {
+      margin-top: 2.5rem;
+    }
+  }
 }
+
+#svgContainer {
+    width: 100%;
+    max-width: 460px; /* 你可以根据需要调整 */
+  }
+
+  .snake-light {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 600px) {
+    #svgContainer {
+      max-width: 100%;
+    }
+  }
 </style>

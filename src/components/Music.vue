@@ -12,12 +12,10 @@
     </div>
     <div class="control">
       <go-start theme="filled" size="30" fill="#efefef" @click="changeMusicIndex(0)" />
-      <Transition name="fade" mode="out-in">
-        <div :key="store.playerState" class="state" @click="changePlayState">
-          <play-one theme="filled" size="50" fill="#efefef" v-show="!store.playerState" />
-          <pause theme="filled" size="50" fill="#efefef" v-show="store.playerState" />
-        </div>
-      </Transition>
+      <div class="state" @click="changePlayState">
+        <play-one theme="filled" size="50" fill="#efefef" v-show="!store.playerState" />
+        <pause theme="filled" size="50" fill="#efefef" v-show="store.playerState" />
+      </div>
       <go-end theme="filled" size="30" fill="#efefef" @click="changeMusicIndex(1)" />
     </div>
     <div class="menu">
@@ -118,18 +116,30 @@ const changeMusicIndex = (type) => {
   playerRef.value.changeSong(type);
 };
 
+//空格使音乐暂停
+function handleSpaceKey(event) {
+  // 检查是否当前焦点在输入框上，如果是则不处理
+  if (event.target.tagName.toLowerCase() === 'input' && event.target.type === 'text') {
+    return;
+  }
+
+  if (!store.musicIsOk) {
+    return;
+  }
+
+  if (event.code === "Space") {
+    changePlayState();
+  }
+}
 onMounted(() => {
   // 空格键事件
-  window.addEventListener("keydown", (e) => {
-    if (!store.musicIsOk) {
-      return;
-    }
-    if (e.code == "Space") {
-      changePlayState();
-    }
-  });
+  window.addEventListener("keydown", handleSpaceKey);
   // 挂载方法至 window
   window.$openList = openMusicList;
+});
+onBeforeUnmount(() => {
+  // 移除事件监听器
+  window.removeEventListener("keydown", handleSpaceKey);
 });
 
 // 监听音量变化
@@ -179,7 +189,6 @@ watch(
     justify-content: space-evenly;
     width: 100%;
     .state {
-      transition: opacity 0.1s;
       .i-icon {
         width: 50px;
         height: 50px;

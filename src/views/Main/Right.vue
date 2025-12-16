@@ -21,7 +21,7 @@ const store = mainStore();
 // 站点链接
 const siteUrl = computed(() => {
   const url = import.meta.env.VITE_SITE_URL;
-  if (!url) return "imsyy.top".split(".");
+  if (!url) return "ooo.ozo.ooo".split(".");
   // 判断协议前缀
   if (url.startsWith("http://") || url.startsWith("https://")) {
     const urlFormat = url.replace(/^(https?:\/\/)/, "");
@@ -39,7 +39,7 @@ const siteUrl = computed(() => {
   .logo {
     width: 100%;
     font-family: "Pacifico-Regular";
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     position: fixed;
     top: 6%;
     left: 0;
@@ -49,15 +49,8 @@ const siteUrl = computed(() => {
     &:active {
       transform: scale(0.95);
     }
-    @media (min-width: 721px) {
+    @media (min-width: 720px) {
       display: none;
-    }
-    @media (max-height: 720px) {
-      width: calc(100% + 6px);
-      top: 43.26px; // 721px * 0.06
-    }
-    @media (max-width: 390px) {
-        width: 391px;
     }
   }
   @media (max-width: 720px) {

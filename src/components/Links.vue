@@ -4,9 +4,19 @@
       <Icon size="20">
         <Link />
       </Icon>
-      <span class="title">网站列表</span>
+      <span class="title">我的列表</span>
+      <form class="search-box" id="searchForm" method="GET">
+        <select id="searchEngine" name="engine">
+          <option value="https://www.google.com/search">Google</option>
+          <option value="https://www.bing.com/search">Bing</option>
+          <option value="https://search.yahoo.com/search">Yahoo</option>
+        </select>
+        <input type="text" name="q" placeholder="搜索">
+        <input type="submit" value="Search">
+      </form>
     </div>
     <!-- 网站列表 -->
+
     <Swiper
       v-if="siteLinks[0]"
       :modules="[Pagination, Mousewheel]"
@@ -43,11 +53,13 @@
 <script setup>
 import { Icon } from "@vicons/utils";
 // 可前往 https://www.xicons.org 自行挑选并在此处引入
-import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire, LaptopCode } from "@vicons/fa"; // 注意使用正确的类别
+import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire, LaptopCode, FileDownload, Cubes } from "@vicons/fa"; // 注意使用正确的类别
+import { GTranslateFilled } from "@vicons/material"; // 导入翻译图标
 import { mainStore } from "@/store";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination, Mousewheel } from "swiper/modules";
+import { Pagination, Mousewheel } from "swiper";
 import siteLinks from "@/assets/siteLinks.json";
+
 
 const store = mainStore();
 
@@ -70,6 +82,10 @@ const siteIcon = {
   Book,
   Fire,
   LaptopCode,
+  FileDownload,
+  Cubes,
+  Link,
+  GTranslateFilled,
 };
 
 // 链接跳转
@@ -80,10 +96,10 @@ const jumpLink = (data) => {
     window.open(data.link, "_blank");
   }
 };
-
 onMounted(() => {
   console.log(siteLinks);
 });
+
 </script>
 
 <style lang="scss" scoped>
@@ -109,22 +125,14 @@ onMounted(() => {
       height: 100%;
     }
     .swiper-pagination {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+      position: static;
+      margin-top: 4px;
       :deep(.swiper-pagination-bullet) {
         background-color: #fff;
-        width: 20px;
+        width: 18px;
         height: 4px;
-        margin: 0 4px;
         border-radius: 4px;
-        opacity: 0.2;
         transition: opacity 0.3s;
-        &.swiper-pagination-bullet-active {
-          opacity: 1;
-        }
         &:hover {
           opacity: 1;
         }
@@ -179,4 +187,92 @@ onMounted(() => {
     }
   }
 }
+
+//搜索框部分
+
+.search-box {
+    width: 100%;
+    max-width: 450px;
+    margin: 10px;
+    position: relative;
+    display: flex;
+    animation: fade 0.5s;  /* 添加动画效果 */
+}
+
+.search-box select {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    background: rgba(0, 0, 0, 0.4);  /* 毛玻璃效果 */
+    backdrop-filter: blur(10px);  /* 毛玻璃效果 */
+    -webkit-backdrop-filter: blur(10px);  /* 兼容Safari */
+    color: #fff;
+    outline: none;  /* 移除选择框聚焦时的默认边框 */
+    appearance: none;  /* 移除默认的下拉箭头样式 */
+    transition: transform 0.3s, background 0.3s;  /* 添加过渡效果 */
+    text-align: center;  /* 水平居中 */
+    line-height: 1.5;  /* 调整行高以实现垂直居中 */
+}
+
+.search-box select:hover {
+    transform: scale(1.02);  /* 鼠标悬停时的缩放效果 */
+    background: rgba(0, 0, 0, 0.5);  /* 鼠标悬停时背景色加深 */
+}
+
+.search-box input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 10px;
+    font-size: 16px;
+    border: none;  /* 移除白边 */
+    border-radius: 0 4px 4px 0;
+    background: rgba(0, 0, 0, 0.4);  /* 毛玻璃效果 */
+    backdrop-filter: blur(10px);  /* 毛玻璃效果 */
+    -webkit-backdrop-filter: blur(10px);  /* 兼容Safari */
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;  /* 移除输入框聚焦时的默认边框 */
+    transition: transform 0.3s, background 0.3s;  /* 添加过渡效果 */
+}
+
+.search-box input[type="text"]::placeholder {
+    color: #fff;  /* 设置常显文字的颜色 */
+}
+
+.search-box input[type="text"]:hover {
+    transform: scale(1.02);  /* 鼠标悬停时的缩放效果 */
+    background: rgba(0, 0, 0, 0.5);  /* 鼠标悬停时背景色加深 */
+}
+
+.search-box input[type="text"]:active {
+    transform: scale(1);  /* 鼠标点击时恢复原始大小 */
+}
+
+.search-box input[type="submit"] {
+    display: none;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 </style>
+
+<script>
+export default {
+  mounted() {
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var engine = document.getElementById('searchEngine').value;
+      var query = document.querySelector('input[name="q"]').value;
+      var url = engine + '?q=' + encodeURIComponent(query);
+      window.location.href = url;
+    });
+  }
+}
+</script>

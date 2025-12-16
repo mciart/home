@@ -1,5 +1,9 @@
 <template>
-  <div class="more-content">您可在此编写任意内容</div>
+  <div>
+    <br>
+    <img height="auto" width="500px" src="https://cdn.ozo.ooo/static/svg/skill_pc.svg" alt="SVG Image">
+  </div>
+  <div class="more-content">本站建于2024/6/1哦~</div>
 </template>
 
 <style lang="scss" scoped>
